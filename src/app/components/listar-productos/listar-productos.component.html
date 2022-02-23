@@ -5,7 +5,7 @@
                 <div class="card-body text-center">
                     <span class="titulo">Listado De Productos</span>
                     <button class="btn btn-success float-end" routerLink="/crear-producto">Nuevo</button>
-                    <table class="table table-dark table-striped mt-3">
+                    <table *ngIf="listarProductos.length > 0" class="table table-dark table-striped mt-3">
                         <thead>
                           <tr>
                             <th scope="col">Producto</th>
@@ -16,38 +16,20 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <th scope="row">CocaCola</th>
-                            <td>Bebida</td>
-                            <td>Bogota</td>
-                            <td>2</td>
+                          <tr *ngFor="let producto of listarProductos">
+                            <th>{{producto.nombre}}</th>
+                            <th>{{producto.categoria}}</th>
+                            <th>{{producto.ubicacion}}</th>
+                            <th>{{producto.precio}}</th>
+                    
                             <td>
-                                <button class="fas btn btn-danger">Eliminar</button>
-                                <button class="fas btn btn-warning">Editar</button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">CocaCola</th>
-                            <td>Bebida</td>
-                            <td>Bogota</td>
-                            <td>2</td>
-                            <td>
-                                <button class="fas btn btn-danger">Eliminar</button>
-                                <button class="fas btn btn-warning">Editar</button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">CocaCola</th>
-                            <td>Bebida</td>
-                            <td>Bogota</td>
-                            <td>2</td>
-                            <td>
-                                <button class="fas btn btn-danger">Eliminar</button>
+                                <button (click)="eliminarProducto(producto._id)" class="fas btn btn-danger">Eliminar</button>
                                 <button class="fas btn btn-warning">Editar</button>
                             </td>
                           </tr>
                         </tbody>
                       </table>
+                      <h5 style="text-align: start; margin-top: 10px;" *ngIf="listarProductos.length == 0" >No hay productos para mostrar</h5>
                 </div>
             </div>
         </div>
